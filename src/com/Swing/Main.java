@@ -29,6 +29,7 @@ public class Main {
         jFrame.revalidate(); // обновить (перерисовать) элементы окна
         */
 
+        /*
         // Создание простого  ------------------------------------------ GridBagLayout ----------------------------------------------
         jFrame.add(jPanel);
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -77,6 +78,18 @@ public class Main {
         constraints4.gridheight=1;
         constraints4.gridwidth=1;
         jPanel.add(new Button("Click 3"), constraints4);
+
+        jFrame.revalidate(); // обновить (перерисовать) элементы окна
+
+         */
+
+        // Создание простого  ------------------------------------------ NO Layout ----------------------------------------------
+        jFrame.add(jPanel);
+        jPanel.setLayout(null); // ограничение, при изменении размеров, все элементы остаются на месте
+
+        JButton jButton = new JButton("sub"); // добавление кнопки
+        jButton.setBounds(50, 50, 150, 40);
+        jPanel.add(jButton);
 
         jFrame.revalidate(); // обновить (перерисовать) элементы окна
     }
