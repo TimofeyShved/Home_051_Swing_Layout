@@ -83,6 +83,7 @@ public class Main {
 
          */
 
+        /*
         // Создание простого  ------------------------------------------ NO Layout ----------------------------------------------
         jFrame.add(jPanel);
         jPanel.setLayout(null); // ограничение, при изменении размеров, все элементы остаются на месте
@@ -92,12 +93,40 @@ public class Main {
         jPanel.add(jButton);
 
         jFrame.revalidate(); // обновить (перерисовать) элементы окна
+         */
+
+        // Создание простого  ------------------------------------------ Custom Layout ----------------------------------------------
+        jFrame.add(jPanel);
+        jPanel.setLayout(new myCustomLayout()); // вызываем класс нашего Custom Layout
+        jPanel.add(new JButton("sub"));
+        jPanel.add(new JButton("sub")); // добавление кнопки
+        jPanel.add(new JButton("sub"));
+        jPanel.add(new JButton("sub"));
+        jFrame.revalidate(); // обновить (перерисовать) элементы окна
+    }
+
+    static class myCustomLayout implements LayoutManager{
+        @Override
+        public void addLayoutComponent(String name, Component comp) {}
+        @Override
+        public void removeLayoutComponent(Component comp) {}
+        @Override
+        public Dimension preferredLayoutSize(Container parent) {return null;}
+        @Override
+        public Dimension minimumLayoutSize(Container parent) {return null;}
+        @Override
+        public void layoutContainer(Container parent) {
+            for (int i=0; i<parent.getComponentCount();i++){ // проходимся по компонентам родителя элемента
+                Component component = parent.getComponent(i);
+                component.setBounds(i*100, i*20, 100, 20); // иенем ему размеры и место
+            }
+        }
     }
 
     static JFrame getFrame(){
         JFrame jFrame = new JFrame(); // создается форма
         jFrame.setVisible(true); // влючаем видимость
-        jFrame.setBounds(750,250,300,300); // размеры
+        jFrame.setBounds(750,250,450,200); // размеры
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // выход
         return jFrame;
     }
